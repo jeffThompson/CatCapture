@@ -7,8 +7,13 @@ CAT CAPTURE
  
  Match your body to the cat shapes, score points, be happy.
  
+ SETUP:
+ +  Have your camera face a white background with no clutter
+ +  Your body should appear as a dark silhouette
+ +  Use the up/down arrow keys to adjust the contrast if necessary
+ 
  TO DO:
- + why does the frame blank when the camera loads?
+ +   Why does the frame blank when the camera loads?
  
  */
 
@@ -17,13 +22,19 @@ boolean saveFrames =       true;       // save frames of people trying?
 float saveFrameThreshold = 20;         // at what % score to save frames?
 
 long timeToPose =    12 * 1000;  // time before pose is captured, in ms
-long timeToStart =   7 * 1000;   // ditto start screen
-long timeForScore =  5 * 1000;   // ditto display score
+long timeToStart =   7 * 1000;   // (note 7 really shows up closer to 5 sec)
+long timeForScore =  7 * 1000;
 
 boolean introScreen =  true;     // start on intro screen
 boolean scoreScreen =  false;
+
 boolean cameraError =  false;    // did we have a problem loading the camera?
 boolean cameraLoaded = false;
+
+String[] bad =   { "Hiss!", "Boo...", "[ gato turds ]", "Bad kitty!", "[ scratching up the couch ]", "[ hairball ]" };
+String[] ok =    { "[ um, whatever ]", "[ unhappily swishing tail ]", "Just ok." };
+String[] good =  { "Prrr...", "Pretty good!", "Good little kitty." };
+String[] great = { "Mee-ow!", "Excellent!", "[ can opener sound ]" };
 
 PImage[] cats;        // array of cat images
 int target;           // which one to display?
@@ -31,6 +42,7 @@ Capture cam;          // webcam
 PFont font;           // score, instructions, etc
 long prevMillis;      // keep track of time
 float scorePercent;   // how did we do?
+String feedback;      // randomized feedback text
 
 
 void setup() {
@@ -70,4 +82,5 @@ void draw() {
     }
   }
 }
+
 

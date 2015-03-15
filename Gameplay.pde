@@ -6,15 +6,22 @@ void displayGameplay() {
   }
 
   // time's up!
-  if (prevMillis + timeToPose < millis()) {
-    scoreScreen = true;
-    prevMillis = millis();
+  if (prevMillis + timeToPose < millis()) {    
+    // random feedback
+    // (here so it doesn't change continuously)
+    if (scorePercent < 10)                           feedback = bad[int(random(bad.length))];
+    else if (scorePercent > 10 && scorePercent < 50) feedback = ok[int(random(ok.length))];
+    else if (scorePercent > 10 && scorePercent < 90) feedback = good[int(random(good.length))];
+    else                                             feedback = great[int(random(great.length))];
     
     // save the frame, if specified and above score threshold
     // saves to separate folders for each cat image
     if (saveFrames && scorePercent > saveFrameThreshold) {
       saveUnique(sketchPath("") + "CapturedFrames/" + target + "/", 8, "CatCapture", "_", ".jpg");
     }
+    
+    scoreScreen = true;
+    prevMillis = millis();
   }
 }
 
@@ -83,4 +90,5 @@ void displayFrame() {
   long timeLeft = ((prevMillis + timeToPose) - millis()) / 1000;
   text(timeLeft + " sec left", 40, 150);
 }
+
 

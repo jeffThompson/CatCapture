@@ -20,15 +20,15 @@ void displayIntro() {
   // when does start screen end?
   else {
     long timeLeft = ((prevMillis + timeToStart) - millis()) / 1000;
-    
     textFont(font, 18);
     text("Starting in " + timeLeft + " seconds...", width/2, height/2 + 140);
 
-    // times up, start playing!
+    // time's up, start playing!
     if (prevMillis + timeToStart < millis()) {
       introScreen = false;
       prevMillis = millis();
     }
   }
 }
+
 

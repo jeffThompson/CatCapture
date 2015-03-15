@@ -8,5 +8,7 @@ void displayCameraError() {
   textFont(font, 72);
   text("ERROR: NO CAMERA FOUND", width/2, height/2);
   textFont(font, 24);
-  text("Sorry!", width/2, height/2 + 80);
+  text("Sorry!", width/2, height/2 + 60);
 }
+
+
